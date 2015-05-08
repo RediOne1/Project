@@ -42,6 +42,7 @@ public class RecipesFragment extends ListFragment {
 		recipeList.add(new Recipe("Więcej cycków"));
 		recipeList.add(new Recipe("Jeszcze więcej cycków"));
 		recipeList.add(new Recipe("O matko!"));
+		recipeList.add(new Recipe("I tatko!"));
 		adapter.notifyDataSetChanged();
 	}
 }
