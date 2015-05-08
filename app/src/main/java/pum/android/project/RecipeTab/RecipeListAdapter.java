@@ -57,8 +57,6 @@ public class RecipeListAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		if (getItem(position).images == null || getItem(position).images.size() == 0) {
 			int resources[] = {R.drawable.image1, R.drawable.image2, R.drawable.image3, R.drawable.image4};
-			Random random = new Random();
-			int n = random.nextInt(resources.length);
 			holder.image.setImageResource(resources[position]);
 		}
 		holder.title.setText(getItem(position).name);
