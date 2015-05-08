@@ -24,7 +24,9 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		if (actionBar != null) {
+			actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		}
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
@@ -86,6 +88,10 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 		public Fragment getItem(int position) {
 
 			switch (position){
+				case 0:
+					return new LodowkaFragment();
+				case 1:
+					return new RecipesFragment();
 				default:
 					return null;
 			}
@@ -94,7 +100,7 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 		@Override
 		public int getCount() {
 			// Show 3 total pages.
-			return 3;
+			return 2;
 		}
 
 		@Override
@@ -105,8 +111,6 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 					return getString(R.string.title_section1).toUpperCase(l);
 				case 1:
 					return getString(R.string.title_section2).toUpperCase(l);
-				case 2:
-					return getString(R.string.title_section3).toUpperCase(l);
 			}
 			return null;
 		}
