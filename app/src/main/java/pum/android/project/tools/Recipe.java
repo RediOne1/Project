@@ -1,4 +1,4 @@
-package pum.android.project;
+package pum.android.project.tools;
 
 import java.util.List;
 
@@ -14,5 +14,12 @@ public class Recipe {
 	public List<String> images;
 	public String ingredients;
 	public String description;
+
+	public Recipe() {
+	}
+
+	public Recipe(String name) {
+		this.name = name;
+	}
 
 }

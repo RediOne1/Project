@@ -11,6 +11,8 @@ import android.support.v4.view.ViewPager;
 
 import java.util.Locale;
 
+import pum.android.project.RecipeTab.RecipesFragment;
+
 
 public class MainTabActivity extends FragmentActivity implements ActionBar.TabListener {
 
