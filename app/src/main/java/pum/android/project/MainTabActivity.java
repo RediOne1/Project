@@ -92,6 +92,8 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 					return new LodowkaFragment();
 				case 1:
 					return new RecipesFragment();
+				case 2:
+					return new SplashFragment();
 				default:
 					return null;
 			}
@@ -100,7 +102,7 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 		@Override
 		public int getCount() {
 			// Show 3 total pages.
-			return 2;
+			return 3;
 		}
 
 		@Override
@@ -111,6 +113,9 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 					return getString(R.string.title_section1).toUpperCase(l);
 				case 1:
 					return getString(R.string.title_section2).toUpperCase(l);
+				case 2:
+					return getString(R.string.title_section3).toUpperCase(l);
+
 			}
 			return null;
 		}
