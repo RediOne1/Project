@@ -22,7 +22,7 @@ public class RecipesFragment extends Fragment{
 
 	private List<Recipe> recipeList;
 	private RecyclerView mRecyclerView;
-	private RecyclerView.Adapter mAdapter;
+	private RecyclerView.Adapter adapter;
 	private RecyclerView.LayoutManager mLayoutManager;
 
 	@Override
@@ -49,14 +49,14 @@ public class RecipesFragment extends Fragment{
 		mRecyclerView.setLayoutManager(mLayoutManager);
 
 		// specify an adapter (see also next example)
-		mAdapter = new MyAdapter(recipeList);
-		mRecyclerView.setAdapter(mAdapter);
+		adapter = new RecipeRecyclerViewAdapter(recipeList);
+		mRecyclerView.setAdapter(adapter);
 
 		recipeList.add(new Recipe("Cycki"));
 		recipeList.add(new Recipe("Więcej cycków"));
 		recipeList.add(new Recipe("Jeszcze więcej cycków"));
 		recipeList.add(new Recipe("O matko!"));
 		recipeList.add(new Recipe("I tatko!"));
-		mAdapter.notifyDataSetChanged();
+		adapter.notifyDataSetChanged();
 	}
 }
