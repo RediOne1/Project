@@ -19,7 +19,7 @@ import pum.android.project.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LodowkaFragment extends ListFragment implements View.OnClickListener,  AdapterView.OnItemLongClickListener {
+public class LodowkaFragment extends ListFragment implements View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
     private static ListView lv;
     private static ArrayList<String> ingList;
     private static IngridientAdapter ingridientAdapter;
@@ -44,25 +44,26 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
         ingList = new ArrayList<>();
         ingridientAdapter = new IngridientAdapter(getActivity(),ingList);
         lv.setAdapter(ingridientAdapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-              Toast.makeText(getActivity(),"asdasd",Toast.LENGTH_SHORT).show();
-            }
-        });
+        lv.setOnItemClickListener(this);
         lv.setOnItemLongClickListener(this);
         ingList.add("cos");
         ingList.add("cos2");
         ingList.add("cos3");
         ingridientAdapter.notifyDataSetChanged();
 
-    }
 
+    }
 
     public void onClick(View v){
         Toast.makeText(getActivity(),"sad"+Integer.toString(i),Toast.LENGTH_SHORT).show();
     }
+
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        i++;
+        Toast.makeText(getActivity(),"sad2",Toast.LENGTH_SHORT).show();
+
+    }
+
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
         Toast.makeText(getActivity(),"sad2",Toast.LENGTH_SHORT).show();
