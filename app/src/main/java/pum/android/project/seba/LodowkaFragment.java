@@ -3,24 +3,30 @@ package pum.android.project.seba;
 
 
 import android.app.ListFragment;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import pum.android.project.R;
+import pum.android.project.tools.Ingridients;
 
 public class LodowkaFragment extends ListFragment implements View.OnClickListener, ListView.OnItemClickListener, ListView.OnItemLongClickListener {
     private ListView lv;
-    private ArrayList<String> ingList;
+    private ArrayList<Ingridients> ingList;
+
     private IngridientAdapter ingridientAdapter;
     int i=0;
+    String HTMLlist[];
 	public LodowkaFragment() {
 		// Required empty public constructor
 	}
@@ -43,16 +49,30 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
         lv.setAdapter(ingridientAdapter);
         lv.setOnItemClickListener(this);
         lv.setOnItemLongClickListener(this);
-        ingList.add("cos");
-        ingList.add("cos2");
-        ingList.add("cos3");
+        ingList.add(new Ingridients(1, "MÄ…ka", "maka"));
+        ingList.add(new Ingridients(2,"Kruszony lÃ³d","klod"));
+        ingList.add(new Ingridients(3,"Ketchup","ket"));
+        ingList.add(new Ingridients(4,"BuÅ‚ka tarta","tbulka"));
+        HTMLlist=new String[ingList.size()];
         ingridientAdapter.notifyDataSetChanged();
 
 
     }
 
     public void onClick(View v){
-        Toast.makeText(getActivity(), "sad" + Integer.toString(i), Toast.LENGTH_SHORT).show();
+        String header="http://www.przepisy.pl/api?ingridiens={";
+        if (HTMLlist.length==0){
+            Toast.makeText(getActivity(), "Proszê wybraæ sk³adnik", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        int i=0;
+        for(i=0;i<HTMLlist.length;i++){
+            if(HTMLlist[i]!=null)
+                header=header+HTMLlist[i];
+        }
+        header +="num:"+Integer.toString(i);
+        header=header+"}";
+        Toast.makeText(getActivity(), header, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -64,7 +84,21 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        i++;
-        Toast.makeText(getActivity(),"sad2",Toast.LENGTH_SHORT).show();
+        String message;
+        int  colorTable[]={Color.BLACK, Color.WHITE};
+        ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
+
+        ColorDrawable color =(ColorDrawable)imageView.getBackground();
+        if(color.getColor()==colorTable[0]){
+            imageView.setBackgroundColor(colorTable[1]);
+            HTMLlist[position]=Integer.toString(position)+":"+ingList.get(position).id+",";
+            message = "Dodano sk³adnik ";
+        }else{
+            imageView.setBackgroundColor(colorTable[0]);
+            HTMLlist[position]="";
+            message="Usuniêto sk³adnik ";
+        }
+        Toast.makeText(getActivity(),message+ingList.get(position).name,Toast.LENGTH_SHORT).show();
+
     }
 }

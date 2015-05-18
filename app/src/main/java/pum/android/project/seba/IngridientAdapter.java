@@ -8,19 +8,27 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import android.app.*;
+import android.os.*;
+import android.view.*;
+import android.widget.*;
+import java.util.*;
+import android.content.*;
 import java.util.List;
 
 import pum.android.project.R;
+import pum.android.project.tools.Ingridients;
 
 /**
  * Created by seba on 08.05.15.
  */
 public class IngridientAdapter extends BaseAdapter
 {
-    private List<String> ingList;
+    private List<Ingridients> ingList;
     private LayoutInflater inflater;
 
-    public IngridientAdapter(Context context, List<String> ingList){
+    public IngridientAdapter(Context context, ArrayList<Ingridients> ingList){
         this.ingList=ingList;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -31,7 +39,7 @@ public class IngridientAdapter extends BaseAdapter
     }
 
     @Override
-    public String getItem(int position) {
+    public Ingridients getItem(int position) {
         return ingList.get(position);
     }
 
@@ -46,9 +54,10 @@ public class IngridientAdapter extends BaseAdapter
           convertView = inflater.inflate(R.layout.ingridient, null);
         }
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
-        imageView.setBackgroundColor(00000);
+        //imageView.setBackgroundColor(00000);
+        imageView.setImageResource(parent.getResources().getIdentifier(getItem(position).image,"drawable","pum.android.project"));
         TextView title = (TextView) convertView.findViewById(R.id.textView);
-        title.setText(getItem(position));
+        title.setText(getItem(position).name);
         return  convertView;
     }
 }
