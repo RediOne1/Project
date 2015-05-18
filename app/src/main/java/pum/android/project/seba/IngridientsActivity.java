@@ -20,10 +20,21 @@ public class IngridientsActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ingridients_activity);
         String post=getIntent().getStringExtra("post");
-        /*FragmentManager fragmentManager = getFragmentManager();
+        Bundle message = new Bundle();
+
+        /*RecipesFragment fragment =  new RecipesFragment();
+        message.putString("post",post);
+        FragmentTransaction transaction=getFragmentManager().beginTransaction();
+        fragment.setArguments(message);
+        transaction.replace(R.id.ihavenoidea ,fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+        FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        //RecipesFragment fragment = ;
+        //RecipesFragment fragment =  new RecipesFragment();
         fragmentTransaction.add(R.id.ihavenoidea, new RecipesFragment());
         fragmentTransaction.commit();*/
+
+
     }
 }
