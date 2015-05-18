@@ -24,7 +24,8 @@ public class RecipesFragment extends Fragment{
 	private RecyclerView mRecyclerView;
 	private RecyclerView.Adapter adapter;
 	private RecyclerView.LayoutManager mLayoutManager;
-
+    public RecipesFragment(){
+    }
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {

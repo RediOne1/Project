@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:label="@string/activity2_name" android:name=".seba.IngridientsActivity"/>
     </application>
 
 </manifest>

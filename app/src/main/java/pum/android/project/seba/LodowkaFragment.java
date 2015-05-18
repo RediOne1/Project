@@ -1,8 +1,8 @@
 package pum.android.project.seba;
 
 
-
 import android.app.ListFragment;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -73,6 +73,9 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
         header +="num:"+Integer.toString(i);
         header=header+"}";
         Toast.makeText(getActivity(), header, Toast.LENGTH_SHORT).show();
+        Intent ingridientPost = new Intent(getActivity(), IngridientsActivity.class);
+        ingridientPost.putExtra("post", header);
+        startActivity(ingridientPost);
     }
 
     @Override
