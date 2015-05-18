@@ -1,9 +1,9 @@
 package pum.android.project.seba;
 
 
+
 import android.app.ListFragment;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +16,10 @@ import java.util.ArrayList;
 
 import pum.android.project.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class LodowkaFragment extends ListFragment implements View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
-    private static ListView lv;
-    private static ArrayList<String> ingList;
-    private static IngridientAdapter ingridientAdapter;
+public class LodowkaFragment extends ListFragment implements View.OnClickListener, ListView.OnItemClickListener, ListView.OnItemLongClickListener {
+    private ListView lv;
+    private ArrayList<String> ingList;
+    private IngridientAdapter ingridientAdapter;
     int i=0;
 	public LodowkaFragment() {
 		// Required empty public constructor
@@ -55,19 +52,19 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
     }
 
     public void onClick(View v){
-        Toast.makeText(getActivity(),"sad"+Integer.toString(i),Toast.LENGTH_SHORT).show();
-    }
-
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        i++;
-        Toast.makeText(getActivity(),"sad2",Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(getActivity(), "sad" + Integer.toString(i), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
         Toast.makeText(getActivity(),"sad2",Toast.LENGTH_SHORT).show();
 
-        return false;
+        return true;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        i++;
+        Toast.makeText(getActivity(),"sad2",Toast.LENGTH_SHORT).show();
     }
 }
