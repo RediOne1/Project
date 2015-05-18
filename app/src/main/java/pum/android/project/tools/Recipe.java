@@ -21,5 +21,11 @@ public class Recipe {
 	public Recipe(String name) {
 		this.name = name;
 	}
+    public Recipe(long id,String name,String ingredients,String description){
+        this.id=id;
+        this.name=name;
+        this.ingredients=ingredients;
+        this.description=description;
+    }
 
 }
