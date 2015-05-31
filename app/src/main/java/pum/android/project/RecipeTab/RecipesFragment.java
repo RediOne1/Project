@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,8 +57,18 @@ public class RecipesFragment extends Fragment{
 		// specify an adapter (see also next example)
 		adapter = new RecipeRecyclerViewAdapter(getActivity(), recipeList);
 		mRecyclerView.setAdapter(adapter);
+
         JSONAsyn Async=new JSONAsyn();
-        Async.execute("http://vps170438.ovh.net:9090/getRecipesList","recipesList");
+        Bundle bundle = this.getArguments();
+        if (bundle==null) {
+            Async.execute("http://vps170438.ovh.net:9090/getRecipesList", "recipesList");
+        }else{
+            String url = bundle.getString("post");
+            Log.d("asd",url);
+            //Async.execute("http://vps170438.ovh.net:9090/getRecipesList", "recipesList");
+            Async.execute(url, "recipeByIng");
+        }
+
         while(Async.rdy!=true){
             try{
                 Thread.sleep(100);
@@ -75,12 +86,12 @@ public class RecipesFragment extends Fragment{
         }catch (Exception ex){
             ex.printStackTrace();
         }
-
-		recipeList.add(new Recipe(1, "Przepis pierwszy"));
-		recipeList.add(new Recipe(2, "Przepis drugi"));
-		recipeList.add(new Recipe(3, "Przepis trzeci"));
-		recipeList.add(new Recipe(4, "Przepis czwarty"));
-		recipeList.add(new Recipe(5, "Przepis piąty"));
+        /*
+		recipeList.add(new Recipe(1, "Cycki"));
+		recipeList.add(new Recipe(2, "Więcej cycków"));
+		recipeList.add(new Recipe(3, "Jeszcze więcej cycków"));
+		recipeList.add(new Recipe(4, "O matko!"));
+		recipeList.add(new Recipe(5, "I tatko!"));*/
 		adapter.notifyDataSetChanged();
 	}
 }

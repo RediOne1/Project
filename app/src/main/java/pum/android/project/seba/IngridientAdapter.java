@@ -30,11 +30,12 @@ public class IngridientAdapter extends BaseAdapter
 {
     private List<Ingridients> ingList;
     private LayoutInflater inflater;
-    ImageFetcher imf;
+    ImageFetcher imageFetcher;
 
     public IngridientAdapter(Context context, ArrayList<Ingridients> ingList){
         this.ingList=ingList;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        imageFetcher = ((MainTabActivity) context).getImageFetcher();
 
     }
 
@@ -64,6 +65,7 @@ public class IngridientAdapter extends BaseAdapter
         if(getItem(position).image=="null"){
             imageView.setImageResource(parent.getResources().getIdentifier("image1","drawable","pum.android.project"));
         }else{
+            //imageFetcher.loadImage(getItem(position).image, imageView);
             new DownloadBitmap(imageView).execute(getItem(position).image);
         }
         //imageView.setImageResource(parent.getResources().getIdentifier(getItem(position).image,"drawable","pum.android.project"));
