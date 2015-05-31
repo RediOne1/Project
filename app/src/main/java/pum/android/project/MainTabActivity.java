@@ -89,7 +89,6 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 		cacheParams.setMemCacheSizePercent(0.25f); // Set memory cache to 25% of app memory
 		imageFetcher = new ImageFetcher(this, longest);
 		imageFetcher.addImageCache(getSupportFragmentManager(), cacheParams);
-		imageFetcher.setImageFadeIn(true);
 	}
 
 	public ImageFetcher getImageFetcher() {

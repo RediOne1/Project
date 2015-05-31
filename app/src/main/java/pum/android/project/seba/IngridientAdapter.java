@@ -17,9 +17,11 @@ import java.util.*;
 import android.content.*;
 import java.util.List;
 
+import pum.android.project.MainTabActivity;
 import pum.android.project.R;
 import pum.android.project.tools.DownloadBitmap;
 import pum.android.project.tools.Ingridients;
+import pum.android.project.tools.displayingbitmaps.ImageFetcher;
 
 /**
  * Created by seba on 08.05.15.
@@ -28,10 +30,11 @@ public class IngridientAdapter extends BaseAdapter
 {
     private List<Ingridients> ingList;
     private LayoutInflater inflater;
-
+    ImageFetcher imf;
     public IngridientAdapter(Context context, ArrayList<Ingridients> ingList){
         this.ingList=ingList;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
     }
 
     @Override
@@ -54,6 +57,7 @@ public class IngridientAdapter extends BaseAdapter
         if(convertView == null) {
           convertView = inflater.inflate(R.layout.ingridient, null);
         }
+
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
         //imageView.setBackgroundColor(00000);
         if(getItem(position).image=="null"){

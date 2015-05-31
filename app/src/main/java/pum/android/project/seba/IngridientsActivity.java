@@ -24,14 +24,9 @@ public class IngridientsActivity extends Activity
 
         RecipesFragment fragment =  new RecipesFragment();
         message.putString("post",post);
-       // FragmentTransaction transaction=getFragmentManager().beginTransaction();
         fragment.setArguments(message);
-        //transaction.replace(R.id.ihavenoidea ,fragment);
-        //transaction.addToBackStack(null);
-        //transaction.commit();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        //RecipesFragment fragment =  new RecipesFragment();
         fragmentTransaction.add(R.id.lodowka_activ, fragment);
         fragmentTransaction.commit();
 
