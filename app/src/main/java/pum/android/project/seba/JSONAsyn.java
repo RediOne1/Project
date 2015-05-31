@@ -19,7 +19,7 @@ public class JSONAsyn extends AsyncTask<String,Void,Void> {
     JSONParser jsonP=new JSONParser();
     JSONObject jObj;
     JSONArray ingArray;
-    boolean rdy=false;
+    public boolean rdy=false;
     @Override
     protected void onPreExecute() {
         super.onPreExecute();

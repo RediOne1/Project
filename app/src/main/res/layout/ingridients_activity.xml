@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout
-	android:id="@+id/container"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-	<fragment
-		android:id="@+id/ihavenoidea"
-		class="pum.android.project.RecipeTab.RecipesFragment"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/lodowka_activ"
+    >
+    <!--<fragment class="pum.android.project.RecipeTab.RecipesFragment"
+        android:id="@+id/ihavenoidea"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         />
-
+         />-->
 </GridLayout>

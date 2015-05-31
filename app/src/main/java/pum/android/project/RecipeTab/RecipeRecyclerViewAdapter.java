@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import pum.android.project.R;
+import pum.android.project.tools.DownloadBitmap;
 import pum.android.project.tools.Recipe;
 
 public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.ViewHolder> {
@@ -35,7 +36,12 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
 	public void onBindViewHolder(ViewHolder holder, int position) {
 
 		int resources[] = {R.drawable.image1, R.drawable.image2, R.drawable.image3, R.drawable.image4, R.drawable.image5};
-		holder.image.setImageResource(resources[position]);
+        /*if(recipeList.get(position).image=="null"){
+            holder.image.setImageResource(resources[1]);
+        }else{
+            new DownloadBitmap(holder.image).execute(recipeList.get(position).image);
+        }
+		*/holder.image.setImageResource(resources[position]);
 
 		holder.title.setText(recipeList.get(position).name);
 

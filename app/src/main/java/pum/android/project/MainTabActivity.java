@@ -66,7 +66,7 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 							.setText(mSectionsPagerAdapter.getPageTitle(i))
 							.setTabListener(this));
 		}
-		prepareImageFetcher();
+		//prepareImageFetcher();
 	}
 
 	private void prepareImageFetcher() {
