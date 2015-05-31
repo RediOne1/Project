@@ -41,7 +41,7 @@ public class JSONParser {
     public JSONObject makeHttpRequest(String url, String method,
                                       List<NameValuePair> params) throws IOException {
 
-        // Making HTTP request
+
 
         HttpParams httpParameters = new BasicHttpParams();
         HttpConnectionParams.setConnectionTimeout(httpParameters, 3000);

@@ -12,11 +12,6 @@ import java.util.List;
 import pum.android.project.R;
 import pum.android.project.tools.Recipe;
 
-/**
- * author:  Adrian Kuta
- * index:   204423
- * date:    08.05.15
- */
 public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.ViewHolder> {
 	private List<Recipe> recipeList;
 

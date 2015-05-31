@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,20 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.apache.http.NameValuePair;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import pum.android.project.R;
 import pum.android.project.tools.Ingridients;
+import pum.android.project.tools.JSONParser;
 
 public class LodowkaFragment extends ListFragment implements View.OnClickListener, ListView.OnItemClickListener, ListView.OnItemLongClickListener {
     private ListView lv;
     private ArrayList<Ingridients> ingList;
-
     private IngridientAdapter ingridientAdapter;
     int i=0;
     String HTMLlist[];
@@ -41,6 +47,7 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         Button addButton = (Button) getActivity().findViewById(R.id.add_button);
         addButton.setOnClickListener(this);
         lv = getListView();
@@ -49,14 +56,26 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
         lv.setAdapter(ingridientAdapter);
         lv.setOnItemClickListener(this);
         lv.setOnItemLongClickListener(this);
-        ingList.add(new Ingridients(1, "Mąka", "maka"));
-        ingList.add(new Ingridients(2,"Kruszony lód","klod"));
-        ingList.add(new Ingridients(3,"Ketchup","ket"));
-        ingList.add(new Ingridients(4,"Bułka tarta","tbulka"));
+        JSONAsyn Async=new JSONAsyn();
+        Async.execute();
+        while(Async.rdy!=true){
+            try{
+                Thread.sleep(100);
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
+        JSONArray ingArray = Async.getJsonAsync();
+        try {
+            for (int i = 0; i < ingArray.length(); i++) {
+                JSONObject c = ingArray.getJSONObject(i);
+                ingList.add(new Ingridients(Integer.parseInt(c.getString("id")), c.getString("name"), "maka"));
+                ingridientAdapter.notifyDataSetChanged();
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
         HTMLlist=new String[ingList.size()];
-        ingridientAdapter.notifyDataSetChanged();
-
-
     }
 
     public void onClick(View v){

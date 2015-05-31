@@ -2,11 +2,6 @@ package pum.android.project.tools;
 
 import java.util.List;
 
-/**
- * author:  Adrian Kuta
- * index:   204423
- * date:    08.05.15
- */
 public class Recipe {
 
 	public long id;
