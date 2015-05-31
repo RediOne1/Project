@@ -18,6 +18,7 @@ import android.content.*;
 import java.util.List;
 
 import pum.android.project.R;
+import pum.android.project.tools.DownloadBitmap;
 import pum.android.project.tools.Ingridients;
 
 /**
@@ -55,7 +56,12 @@ public class IngridientAdapter extends BaseAdapter
         }
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
         //imageView.setBackgroundColor(00000);
-        imageView.setImageResource(parent.getResources().getIdentifier(getItem(position).image,"drawable","pum.android.project"));
+        if(getItem(position).image=="null"){
+            imageView.setImageResource(parent.getResources().getIdentifier("image1","drawable","pum.android.project"));
+        }else{
+            new DownloadBitmap(imageView).execute(getItem(position).image);
+        }
+        //imageView.setImageResource(parent.getResources().getIdentifier(getItem(position).image,"drawable","pum.android.project"));
         TextView title = (TextView) convertView.findViewById(R.id.textView);
         title.setText(getItem(position).name);
         return  convertView;

@@ -57,7 +57,7 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
         lv.setOnItemClickListener(this);
         lv.setOnItemLongClickListener(this);
         JSONAsyn Async=new JSONAsyn();
-        Async.execute();
+        Async.execute("http://vps170438.ovh.net:9090/getIngridientsList","ingridientsList");
         while(Async.rdy!=true){
             try{
                 Thread.sleep(100);
@@ -69,7 +69,7 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
         try {
             for (int i = 0; i < ingArray.length(); i++) {
                 JSONObject c = ingArray.getJSONObject(i);
-                ingList.add(new Ingridients(Integer.parseInt(c.getString("id")), c.getString("name"), "maka"));
+                ingList.add(new Ingridients(Integer.parseInt(c.getString("id")), c.getString("name"), c.getString("image")));
                 ingridientAdapter.notifyDataSetChanged();
             }
         }catch (Exception ex){
