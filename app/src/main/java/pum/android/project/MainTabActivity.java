@@ -8,17 +8,23 @@ import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 
 import java.util.Locale;
 
 import pum.android.project.RecipeTab.RecipesFragment;
 import pum.android.project.seba.LodowkaFragment;
+import pum.android.project.tools.displayingbitmaps.ImageCache;
+import pum.android.project.tools.displayingbitmaps.ImageFetcher;
 
 
 public class MainTabActivity extends FragmentActivity implements ActionBar.TabListener {
 
+	private static final String IMAGE_CACHE_DIR = "images";
+
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	ViewPager mViewPager;
+	private ImageFetcher imageFetcher;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +66,33 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 							.setText(mSectionsPagerAdapter.getPageTitle(i))
 							.setTabListener(this));
 		}
+		prepareImageFetcher();
+	}
+
+	private void prepareImageFetcher() {
+		// Fetch screen height and width, to use as our max size when loading images as this
+		// activity runs full screen
+		final DisplayMetrics displayMetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+		final int height = displayMetrics.heightPixels;
+		final int width = displayMetrics.widthPixels;
+
+		// For this sample we'll use half of the longest width to resize our images. As the
+		// image scaling ensures the image is larger than this, we should be left with a
+		// resolution that is appropriate for both portrait and landscape. For best image quality
+		// we shouldn't divide by 2, but this will use more memory and require a larger memory
+		// cache.
+		final int longest = (height > width ? height : width) / 2;
+
+		ImageCache.ImageCacheParams cacheParams =
+				new ImageCache.ImageCacheParams(this, IMAGE_CACHE_DIR);
+		cacheParams.setMemCacheSizePercent(0.25f); // Set memory cache to 25% of app memory
+		imageFetcher = new ImageFetcher(this, longest);
+		imageFetcher.addImageCache(getSupportFragmentManager(), cacheParams);
+	}
+
+	public ImageFetcher getImageFetcher() {
+		return imageFetcher;
 	}
 
 	@Override
@@ -90,7 +123,7 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 		@Override
 		public Fragment getItem(int position) {
 
-			switch (position){
+			switch (position) {
 				case 0:
 					return new LodowkaFragment();
 				case 1:

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" useUTFGuessing="false" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/pum/android/project/seba/IngridientsActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/pum/android/project/tools/AutoResizeTextView.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/pum/android/project/tools/JSONParser.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/pum/android/project/tools/RoundedImageView.java" charset="UTF-8" />
@@ -13,7 +14,6 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/pum/android/project/tools/displayingbitmaps/RecyclingBitmapDrawable.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/pum/android/project/tools/displayingbitmaps/RecyclingImageView.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/pum/android/project/tools/displayingbitmaps/Utils.java" charset="UTF-8" />
-    <file url="PROJECT" charset="windows-1250" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
-
