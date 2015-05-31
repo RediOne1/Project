@@ -8,15 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import pum.android.project.R;
-import pum.android.project.seba.JSONAsyn;
-import pum.android.project.tools.Ingridients;
 import pum.android.project.tools.Recipe;
 
 
@@ -55,7 +50,7 @@ public class RecipesFragment extends Fragment{
 		mRecyclerView.setLayoutManager(mLayoutManager);
 
 		// specify an adapter (see also next example)
-		adapter = new RecipeRecyclerViewAdapter(recipeList);
+		adapter = new RecipeRecyclerViewAdapter(getActivity(), recipeList);
 		mRecyclerView.setAdapter(adapter);
        /* JSONAsyn Async=new JSONAsyn();
         Async.execute("http://vps170438.ovh.net:9090/getRecipesList","recipesList");
@@ -77,11 +72,11 @@ public class RecipesFragment extends Fragment{
             ex.printStackTrace();
         }
 */
-		recipeList.add(new Recipe("Cycki"));
-		recipeList.add(new Recipe("Więcej cycków"));
-		recipeList.add(new Recipe("Jeszcze więcej cycków"));
-		recipeList.add(new Recipe("O matko!"));
-		recipeList.add(new Recipe("I tatko!"));
+		recipeList.add(new Recipe(1, "Cycki"));
+		recipeList.add(new Recipe(2, "Więcej cycków"));
+		recipeList.add(new Recipe(3, "Jeszcze więcej cycków"));
+		recipeList.add(new Recipe(4, "O matko!"));
+		recipeList.add(new Recipe(5, "I tatko!"));
 		adapter.notifyDataSetChanged();
 	}
 }

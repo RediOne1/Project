@@ -30,6 +30,7 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_tab);
+		prepareImageFetcher();
 
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
@@ -66,7 +67,6 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 							.setText(mSectionsPagerAdapter.getPageTitle(i))
 							.setTabListener(this));
 		}
-		//prepareImageFetcher();
 	}
 
 	private void prepareImageFetcher() {
@@ -89,6 +89,7 @@ public class MainTabActivity extends FragmentActivity implements ActionBar.TabLi
 		cacheParams.setMemCacheSizePercent(0.25f); // Set memory cache to 25% of app memory
 		imageFetcher = new ImageFetcher(this, longest);
 		imageFetcher.addImageCache(getSupportFragmentManager(), cacheParams);
+		imageFetcher.setImageFadeIn(true);
 	}
 
 	public ImageFetcher getImageFetcher() {

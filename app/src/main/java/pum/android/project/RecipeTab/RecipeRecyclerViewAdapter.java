@@ -1,32 +1,47 @@
 package pum.android.project.RecipeTab;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
+import pum.android.project.MainTabActivity;
 import pum.android.project.R;
-import pum.android.project.tools.DownloadBitmap;
 import pum.android.project.tools.Recipe;
+import pum.android.project.tools.displayingbitmaps.ImageFetcher;
 
 public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecyclerViewAdapter.ViewHolder> {
-	private List<Recipe> recipeList;
+	public List<Recipe> recipeList;
+	private ImageFetcher imageFetcher;
 
-	public RecipeRecyclerViewAdapter(List<Recipe> recipeList) {
+	public RecipeRecyclerViewAdapter(Context context, List<Recipe> recipeList) {
+		imageFetcher = ((MainTabActivity) context).getImageFetcher();
 		this.recipeList = recipeList;
 	}
 
 	@Override
-	public RecipeRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+	public RecipeRecyclerViewAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
 
 		View v = LayoutInflater.from(parent.getContext())
 				.inflate(R.layout.recipe_list_item, parent, false);
 
-		ViewHolder vh = new ViewHolder(v);
+		ViewHolder vh = new ViewHolder(v, new ViewHolder.RecipeListener() {
+			@Override
+			public void onRecipeClick(int position) {
+				//TODO tutaj ustaw jakie activity ma byc uruchamiane
+				/*Intent intent = new Intent(parent.getContext(), IngridientsActivity.class);
+				long id = recipeList.get(position).id;
+				intent.putExtra("id", id);
+				parent.getContext().startActivity(intent);*/
+				Toast.makeText(parent.getContext(), "Wybrano " + recipeList.get(position).name, Toast.LENGTH_SHORT).show();
+			}
+		});
 		vh.image = (ImageView) v.findViewById(R.id.recipe_list_item_image);
 		vh.title = (TextView) v.findViewById(R.id.recipe_list_item_title);
 		return vh;
@@ -35,14 +50,18 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
 
-		int resources[] = {R.drawable.image1, R.drawable.image2, R.drawable.image3, R.drawable.image4, R.drawable.image5};
-        /*if(recipeList.get(position).image=="null"){
-            holder.image.setImageResource(resources[1]);
+		String resources[] = {"http://img.zszywka.pl/1/0116/w_9188/ludzie/cycki-lt3.jpg",
+				"http://img.wiocha.pl/images/c/7/c7223afca11ee6625f4994c21c999bf2.jpg",
+				"http://img.wiocha.pl/images/3/8/3869d6dad62e883f1aa53d7ac9b218db.jpg",
+				"http://www.xdpedia.com/upload/images/zdecydowanie_lepsza_perspektywa_cycki_2013-05-23_09-44-11_middle.jpg",
+				"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTYU8Js3FYH0O89jdVNrSAdmQ2v8EDsBBr7xOEzpHRpAkofJ9lm"};
+		/*if(recipeList.get(position).image=="null"){
+		    holder.image.setImageResource(resources[1]);
         }else{
             new DownloadBitmap(holder.image).execute(recipeList.get(position).image);
         }
-		*/holder.image.setImageResource(resources[position]);
-
+		*/
+		imageFetcher.loadImage(resources[position], holder.image);
 		holder.title.setText(recipeList.get(position).name);
 
 	}
@@ -52,12 +71,24 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
 		return recipeList.size();
 	}
 
-	public static class ViewHolder extends RecyclerView.ViewHolder {
+	public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 		public TextView title;
 		public ImageView image;
+		private RecipeListener listener;
 
-		public ViewHolder(View itemView) {
+		public ViewHolder(View itemView, RecipeListener listener) {
 			super(itemView);
+			this.listener = listener;
+			itemView.setOnClickListener(this);
+		}
+
+		@Override
+		public void onClick(View view) {
+			listener.onRecipeClick(getAdapterPosition());
+		}
+
+		public interface RecipeListener {
+			void onRecipeClick(int position);
 		}
 	}
 }

@@ -16,7 +16,13 @@ public class Recipe {
 	public Recipe(String name) {
 		this.name = name;
 	}
-    public Recipe(long id,String name,String image){
+
+	public Recipe(long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	public Recipe(long id,String name,String image){
         this.id=id;
         this.name=name;
         this.image=image;
