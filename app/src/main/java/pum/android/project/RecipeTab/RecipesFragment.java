@@ -8,10 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import pum.android.project.R;
+import pum.android.project.seba.JSONAsyn;
 import pum.android.project.tools.Recipe;
 
 
@@ -52,7 +56,7 @@ public class RecipesFragment extends Fragment{
 		// specify an adapter (see also next example)
 		adapter = new RecipeRecyclerViewAdapter(getActivity(), recipeList);
 		mRecyclerView.setAdapter(adapter);
-       /* JSONAsyn Async=new JSONAsyn();
+        JSONAsyn Async=new JSONAsyn();
         Async.execute("http://vps170438.ovh.net:9090/getRecipesList","recipesList");
         while(Async.rdy!=true){
             try{
@@ -71,7 +75,7 @@ public class RecipesFragment extends Fragment{
         }catch (Exception ex){
             ex.printStackTrace();
         }
-*/
+
 		recipeList.add(new Recipe(1, "Cycki"));
 		recipeList.add(new Recipe(2, "Więcej cycków"));
 		recipeList.add(new Recipe(3, "Jeszcze więcej cycków"));

@@ -13,6 +13,7 @@ import java.util.List;
 
 import pum.android.project.MainTabActivity;
 import pum.android.project.R;
+import pum.android.project.seba.IngridientsActivity;
 import pum.android.project.tools.Recipe;
 import pum.android.project.tools.displayingbitmaps.ImageFetcher;
 
@@ -21,7 +22,11 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
 	private ImageFetcher imageFetcher;
 
 	public RecipeRecyclerViewAdapter(Context context, List<Recipe> recipeList) {
-		imageFetcher = ((MainTabActivity) context).getImageFetcher();
+		try{
+            imageFetcher = ((MainTabActivity) context).getImageFetcher();
+        }catch (Exception ex){
+            imageFetcher = ((IngridientsActivity) context).getImageFetcher();
+        }
 		this.recipeList = recipeList;
 	}
 
@@ -61,8 +66,12 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
             new DownloadBitmap(holder.image).execute(recipeList.get(position).image);
         }
 		*/
-		imageFetcher.loadImage(resources[position], holder.image);
-		holder.title.setText(recipeList.get(position).name);
+        if(recipeList.get(position).image!=null) {
+            imageFetcher.loadImage(recipeList.get(position).image, holder.image);
+        }else{
+            imageFetcher.loadImage(resources[1], holder.image);
+        }
+        holder.title.setText(recipeList.get(position).name);
 
 	}
 

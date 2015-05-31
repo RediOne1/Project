@@ -31,6 +31,7 @@ public class IngridientAdapter extends BaseAdapter
     private List<Ingridients> ingList;
     private LayoutInflater inflater;
     ImageFetcher imf;
+
     public IngridientAdapter(Context context, ArrayList<Ingridients> ingList){
         this.ingList=ingList;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -59,7 +60,7 @@ public class IngridientAdapter extends BaseAdapter
         }
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
-        //imageView.setBackgroundColor(00000);
+        //ustawia obrazki z sieci albo placeholder
         if(getItem(position).image=="null"){
             imageView.setImageResource(parent.getResources().getIdentifier("image1","drawable","pum.android.project"));
         }else{

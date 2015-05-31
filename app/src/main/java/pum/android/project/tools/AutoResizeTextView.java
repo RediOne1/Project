@@ -47,7 +47,6 @@ public class AutoResizeTextView extends TextView {
 				StaticLayout layout = new StaticLayout(text, mPaint,
 					                                       mWidthLimit, Layout.Alignment.ALIGN_NORMAL, mSpacingMult,
 					                                       mSpacingAdd, true);
-				// return early if we have more lines
 				if (getMaxLines() != NO_LINE_LIMIT
 					     && layout.getLineCount() > getMaxLines()) {
 					return 1;
@@ -111,8 +110,6 @@ public class AutoResizeTextView extends TextView {
 				return mid;
 			}
 		}
-		// make sure to return last best
-		// this is what should always be returned
 		return lastBest;
 
 	}
@@ -123,7 +120,6 @@ public class AutoResizeTextView extends TextView {
 		mAvailableSpaceRect = new RectF();
 		mTextCachedSizes = new SparseIntArray();
 		if (mMaxLines == 0) {
-			// no value was assigned during construction
 			mMaxLines = NO_LINE_LIMIT;
 		}
 		mInitiallized = true;
@@ -199,12 +195,6 @@ public class AutoResizeTextView extends TextView {
 		mSpacingMult = mult;
 		mSpacingAdd = add;
 	}
-
-	/**
-	 * Set the lower text size limit and invalidate the view
-	 *
-	 * @param minTextSize
-	 */
 	public void setMinTextSize(float minTextSize) {
 		mMinTextSize = minTextSize;
 		reAdjust();
@@ -230,15 +220,6 @@ public class AutoResizeTextView extends TextView {
 			                  efficientTextSizeSearch(startSize, (int) mMaxTextSize,
 				                                          mSizeTester, mAvailableSpaceRect));
 	}
-
-	/**
-	 * Enables or disables size caching, enabling it will improve performance
-	 * where you are animating a value inside TextView. This stores the font
-	 * size against getText().length() Be careful though while enabling it as 0
-	 * takes more space than 1 on some fonts and so on.
-	 *
-	 * @param enable enable font size caching
-	 */
 	public void enableSizeCache(boolean enable) {
 		mEnableSizeCache = enable;
 		mTextCachedSizes.clear();

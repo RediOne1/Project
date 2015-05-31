@@ -26,7 +26,8 @@ import java.util.List;
 import pum.android.project.R;
 import pum.android.project.tools.Ingridients;
 import pum.android.project.tools.JSONParser;
-
+/*fragment odpowiada za wygl¹d i dzia³anie lodówki
+*/
 public class LodowkaFragment extends ListFragment implements View.OnClickListener, ListView.OnItemClickListener, ListView.OnItemLongClickListener {
     private ListView lv;
     private ArrayList<Ingridients> ingList;
@@ -56,6 +57,9 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
         lv.setAdapter(ingridientAdapter);
         lv.setOnItemClickListener(this);
         lv.setOnItemLongClickListener(this);
+        /*pobieranie danych z serwera
+          w formacie JSON
+         */
         JSONAsyn Async=new JSONAsyn();
         Async.execute("http://vps170438.ovh.net:9090/getIngridientsList","ingridientsList");
         while(Async.rdy!=true){
@@ -75,6 +79,7 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
         }catch (Exception ex){
             ex.printStackTrace();
         }
+        //przechowuje wybrane sk³adniki
         HTMLlist=new String[ingList.size()];
     }
 
@@ -85,6 +90,7 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
             return;
         }
         int i=0;
+        //dodaje sk³adniki do zapytania
         for(i=0;i<HTMLlist.length;i++){
             if(HTMLlist[i]!=null)
                 if(i<HTMLlist.length-1) {
@@ -94,27 +100,27 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
                 }
 
         }
-
         Toast.makeText(getActivity(), header, Toast.LENGTH_SHORT).show();
+        //przekazywanie danych do activity
         Intent ingridientPost = new Intent(getActivity(), IngridientsActivity.class);
         ingridientPost.putExtra("post", header);
         startActivity(ingridientPost);
     }
-
+    //nie uzywane
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
         Toast.makeText(getActivity(),"sad2",Toast.LENGTH_SHORT).show();
-
         return true;
     }
 
+    //po naciœniêciu przycisku szukaj
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String message;
         int  colorTable[]={Color.BLACK, Color.WHITE};
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-
-        ColorDrawable color =(ColorDrawable)imageView.getBackground();
+        ColorDrawable color =(ColorDrawable)imageView.getBackground();//pobiera kolor t³a
+        //zmienia kolor i wykonuje zale¿n¹ akcjê
         if(color.getColor()==colorTable[0]){
             imageView.setBackgroundColor(colorTable[1]);
             HTMLlist[position]=Long.toString(ingList.get(position).id);
