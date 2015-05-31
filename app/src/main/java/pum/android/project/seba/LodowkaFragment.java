@@ -79,7 +79,7 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
     }
 
     public void onClick(View v){
-        String header="http://www.przepisy.pl/api?ingridiens={";
+        String header="http://vps170438.ovh.net:9090/getRecipeByIng/";
         if (HTMLlist.length==0){
             Toast.makeText(getActivity(), "Proszê wybraæ sk³adnik", Toast.LENGTH_SHORT).show();
             return;
@@ -87,10 +87,14 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
         int i=0;
         for(i=0;i<HTMLlist.length;i++){
             if(HTMLlist[i]!=null)
-                header=header+HTMLlist[i];
+                if(i<HTMLlist.length-1) {
+                    header = header +"'"+ HTMLlist[i] + "',";
+                }else{
+                    header =header +"'" + HTMLlist[i] + "\'";
+                }
+
         }
-        header +="num:"+Integer.toString(i);
-        header=header+"}";
+
         Toast.makeText(getActivity(), header, Toast.LENGTH_SHORT).show();
         Intent ingridientPost = new Intent(getActivity(), IngridientsActivity.class);
         ingridientPost.putExtra("post", header);
@@ -113,7 +117,7 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
         ColorDrawable color =(ColorDrawable)imageView.getBackground();
         if(color.getColor()==colorTable[0]){
             imageView.setBackgroundColor(colorTable[1]);
-            HTMLlist[position]=Integer.toString(position)+":"+ingList.get(position).id+",";
+            HTMLlist[position]=Long.toString(ingList.get(position).id);
             message = "Dodano sk³adnik ";
         }else{
             imageView.setBackgroundColor(colorTable[0]);
