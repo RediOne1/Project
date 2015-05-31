@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,7 +24,7 @@ import pum.android.project.tools.Recipe;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecipesFragment extends Fragment{
+public class RecipesFragment extends Fragment implements RecyclerView.OnItemTouchListener{
 
 	private List<Recipe> recipeList;
 	private RecyclerView mRecyclerView;
@@ -57,6 +58,23 @@ public class RecipesFragment extends Fragment{
 		// specify an adapter (see also next example)
 		adapter = new RecipeRecyclerViewAdapter(recipeList);
 		mRecyclerView.setAdapter(adapter);
+        Bundle bundle = this.getArguments();
+        if (bundle==null){
+            recipeList.add(new Recipe("Cycki"));
+            recipeList.add(new Recipe("Więcej cycków"));
+            recipeList.add(new Recipe("Jeszcze więcej cycków"));
+            recipeList.add(new Recipe("O matko!"));
+            recipeList.add(new Recipe("I tatko!"));
+            adapter.notifyDataSetChanged();
+        }else{
+            String url=bundle.getString("post");
+            recipeList.add(new Recipe("Cycki inne"));
+            recipeList.add(new Recipe("inne Więcej cycków"));
+            recipeList.add(new Recipe("inne Jeszcze więcej cycków"));
+            recipeList.add(new Recipe("inne O matko!"));
+            recipeList.add(new Recipe("inne I tatko!"));
+            adapter.notifyDataSetChanged();
+        }
        /* JSONAsyn Async=new JSONAsyn();
         Async.execute("http://vps170438.ovh.net:9090/getRecipesList","recipesList");
         while(Async.rdy!=true){
@@ -77,11 +95,16 @@ public class RecipesFragment extends Fragment{
             ex.printStackTrace();
         }
 */
-		recipeList.add(new Recipe("Cycki"));
-		recipeList.add(new Recipe("Więcej cycków"));
-		recipeList.add(new Recipe("Jeszcze więcej cycków"));
-		recipeList.add(new Recipe("O matko!"));
-		recipeList.add(new Recipe("I tatko!"));
-		adapter.notifyDataSetChanged();
+
 	}
+
+    @Override
+    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+    }
 }
