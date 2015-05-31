@@ -26,7 +26,7 @@ import java.util.List;
 import pum.android.project.R;
 import pum.android.project.tools.Ingridients;
 import pum.android.project.tools.JSONParser;
-/*fragment odpowiada za wygl¹d i dzia³anie lodówki
+/*fragment odpowiada za wyglÄ…d i dziaÅ‚anie lodÃ³wki
 */
 public class LodowkaFragment extends ListFragment implements View.OnClickListener, ListView.OnItemClickListener, ListView.OnItemLongClickListener {
     private ListView lv;
@@ -79,7 +79,7 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
         }catch (Exception ex){
             ex.printStackTrace();
         }
-        //przechowuje wybrane sk³adniki
+        //przechowuje wybrane skÅ‚adniki
         HTMLlist=new String[ingList.size()];
     }
 
@@ -90,7 +90,7 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
             return;
         }
         int i=0;
-        //dodaje sk³adniki do zapytania
+        //dodaje skÅ‚adniki do zapytania
         for(i=0;i<HTMLlist.length;i++){
             if(HTMLlist[i]!=null)
                 if(i<HTMLlist.length-1) {
@@ -124,11 +124,11 @@ public class LodowkaFragment extends ListFragment implements View.OnClickListene
         if(color.getColor()==colorTable[0]){
             imageView.setBackgroundColor(colorTable[1]);
             HTMLlist[position]=Long.toString(ingList.get(position).id);
-            message = "Dodano sk³adnik ";
+            message = "Dodano skÅ‚adnik ";
         }else{
             imageView.setBackgroundColor(colorTable[0]);
             HTMLlist[position]="";
-            message="Usuniêto sk³adnik ";
+            message="UsuniÄ™to skÅ‚adnik ";
         }
         Toast.makeText(getActivity(),message+ingList.get(position).name,Toast.LENGTH_SHORT).show();
 

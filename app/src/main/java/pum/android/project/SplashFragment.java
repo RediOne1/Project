@@ -33,8 +33,8 @@ public class SplashFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String ing="kruszony lód, ketchup";
-        String desc="Do kruszonego lodu dodaj ketchup, mo¿na posypac bu³k¹ tart¹.";
+        String ing="kruszony lÃ³d, ketchup";
+        String desc="Do kruszonego lodu dodaj ketchup, moÅ¼na posypac buÅ‚kÄ… tartÄ….";
         Recipe recipe=new Recipe(1,"Ketchup z kruszonym lodem",ing,desc);
         ImageView image= (ImageView) view.findViewById(R.id.mainImage);
         image.setImageResource(R.drawable.image1);

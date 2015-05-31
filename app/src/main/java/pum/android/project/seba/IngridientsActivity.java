@@ -18,7 +18,7 @@ import pum.android.project.tools.displayingbitmaps.ImageFetcher;
  * Created by seba on 18.05.15.
  */
 /*
-Przekazuje dane do nowo powsta�ego fragmentu
+Przekazuje dane do nowo powstałego fragmentu
  */
 public class IngridientsActivity extends FragmentActivity
 {

@@ -55,11 +55,11 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
 
-		String resources[] = {"http://img.zszywka.pl/1/0116/w_9188/ludzie/cycki-lt3.jpg",
-				"http://img.wiocha.pl/images/c/7/c7223afca11ee6625f4994c21c999bf2.jpg",
-				"http://img.wiocha.pl/images/3/8/3869d6dad62e883f1aa53d7ac9b218db.jpg",
-				"http://www.xdpedia.com/upload/images/zdecydowanie_lepsza_perspektywa_cycki_2013-05-23_09-44-11_middle.jpg",
-				"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTYU8Js3FYH0O89jdVNrSAdmQ2v8EDsBBr7xOEzpHRpAkofJ9lm"};
+		String resources[] = {"http://i.imgur.com/PTFiBo5.jpg",
+				"http://i.imgur.com/PTFiBo5.jpg",
+				"http://i.imgur.com/PTFiBo5.jpg",
+				"http://i.imgur.com/PTFiBo5.jpg",
+				"http://i.imgur.com/PTFiBo5.jpg"};
 		/*if(recipeList.get(position).image=="null"){
 		    holder.image.setImageResource(resources[1]);
         }else{

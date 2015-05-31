@@ -76,11 +76,11 @@ public class RecipesFragment extends Fragment{
             ex.printStackTrace();
         }
 
-		recipeList.add(new Recipe(1, "Cycki"));
-		recipeList.add(new Recipe(2, "Więcej cycków"));
-		recipeList.add(new Recipe(3, "Jeszcze więcej cycków"));
-		recipeList.add(new Recipe(4, "O matko!"));
-		recipeList.add(new Recipe(5, "I tatko!"));
+		recipeList.add(new Recipe(1, "Przepis pierwszy"));
+		recipeList.add(new Recipe(2, "Przepis drugi"));
+		recipeList.add(new Recipe(3, "Przepis trzeci"));
+		recipeList.add(new Recipe(4, "Przepis czwarty"));
+		recipeList.add(new Recipe(5, "Przepis piąty"));
 		adapter.notifyDataSetChanged();
 	}
 }
